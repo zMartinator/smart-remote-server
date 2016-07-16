@@ -1,17 +1,12 @@
-'use strict';
+// DEVELOPMENT specific configuration
 
-// Development specific configuration
-// ==================================
-
-const config = {
+export default {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/persons-rest-api-dev'
+    uri: 'mongodb://localhost/persons-rest-api-dev',
   },
 
   // Seed database on startup
-  seedDB: true
+  seedDB: true,
 };
-
-export default config;

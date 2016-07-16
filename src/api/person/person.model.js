@@ -1,5 +1,3 @@
-'use strict';
-
 import mongoose from 'mongoose';
 
 const PersonSchema = new mongoose.Schema({
@@ -7,7 +5,7 @@ const PersonSchema = new mongoose.Schema({
   last_name: String,
   email: String,
   id: String,
-  friends: [String]
+  friends: [String],
 });
 
 export default mongoose.model('Person', PersonSchema);

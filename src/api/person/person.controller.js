@@ -6,33 +6,25 @@
  * DELETE  /api/persons/:id   ->  destroy
  */
 
-'use strict';
-
 import _ from 'lodash';
 import Person from './person.model';
 
-function respondWithResult(res, statusCode) {
-  statusCode = statusCode || 200;
+function respondWithResult(res, statusCode = 200) {
   return function(entity) {
-    if (entity) {
+    if (entity)
       res.status(statusCode).json(entity);
-    }
   };
 }
 
 function arrayReplace(firstValue, secondValue) {
-  if (_.isArray(firstValue)) {
-    return secondValue;
-  }
+  if (_.isArray(firstValue)) return secondValue;
 }
 
 function saveUpdates(updates) {
   return function(entity) {
     const updated = _.merge(entity, updates, arrayReplace);
     return updated.save()
-      .then(updated => {
-        return updated;
-      });
+      .then(updated => updated);
   };
 }
 
@@ -57,8 +49,7 @@ function handleEntityNotFound(res) {
   };
 }
 
-function handleError(res, statusCode) {
-  statusCode = statusCode || 500;
+function handleError(res, statusCode = 500) {
   return function(err) {
     res.status(statusCode).send(err);
   };
@@ -73,7 +64,7 @@ export function index(req, res) {
 
 // Gets a single Person from the DB
 export function show(req, res) {
-  console.log(`GET /api/persons/${req.params.id}`);
+  console.log(`GET /api/persons/${req.params.id}`); // eslint-disable-line
   return Person.find({'id': req.params.id}).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))

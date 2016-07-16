@@ -1,14 +1,16 @@
-'use strict';
-
 import path from 'path';
-import _ from 'lodash';
+import developmentConfig from './development';
+import productionConfig from './production';
+import testConfig from './test';
+
+const env = process.env.NODE_ENV;
 
 // All configurations will extend these options
 const all = {
-  env: process.env.NODE_ENV,
+  env,
 
   // Root path of server
-  root: path.normalize(__dirname + '/../../..'),
+  root: path.normalize(`${__dirname}/../../..`),
 
   // Server port
   port: process.env.PORT || 1337,
@@ -23,11 +25,23 @@ const all = {
   mongo: {
     options: {
       db: {
-        safe: true
-      }
-    }
-  }
+        safe: true,
+      },
+    },
+  },
 };
 
 // Export the config object based on the NODE_ENV
-export default _.merge( all, require('./' + process.env.NODE_ENV + '.js').default || {});
+let config = {};
+
+if(env === 'production')
+  config = productionConfig;
+else if (env === 'test')
+  config = testConfig;
+else
+  config = developmentConfig;
+
+export default {
+  ...all,
+  ...config,
+};

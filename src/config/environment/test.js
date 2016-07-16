@@ -1,12 +1,8 @@
-'use strict';
+// TEST specific configuration
 
-// Test specific configuration
-// ===========================
-const config = {
+export default {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/persons-rest-api-test'
-  }
+    uri: 'mongodb://localhost/persons-rest-api-test',
+  },
 };
-
-export default config;

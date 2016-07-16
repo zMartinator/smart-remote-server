@@ -1,5 +1,12 @@
-node_modules
+# System
+.DS_Store
+
+# Editor
 .idea
-dist
-server/config/local.env.js
+
+# node / npm
+node_modules
 npm-debug.log
+
+# Build
+dist

@@ -1,40 +1,36 @@
-'use strict';
+// TODO: githooks
 
-import http from 'http';
-import express from 'express';
 import config from './config/environment';
-import expressConfig from './config/express';
 import routes from './routes';
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
 import seed from './config/seed';
+import app from './config/express';
 
 
 // Connect/configure MongoDB
 mongoose.Promise = bluebird;
 mongoose.connect(config.mongo.uri, config.mongo.options);
-mongoose.connection.on('error', function(err) {
-  console.error('MongoDB connection error: ' + err);
+mongoose.connection.on('error', (err) => {
+  console.error('MongoDB connection error: ' + err); // eslint-disable-line
   process.exit(-1);
 });
 
 // Populate databases with sample data
-if (config.seedDB) { seed() }
+if (config.seedDB)
+  seed();
 
-// Setup server
-const app = express();
-const server = http.createServer(app);
-expressConfig(app);
-routes(app)
+// Setup routes
+routes(app);
 
-// Start server
-function startServer() {
-  server.listen(config.port, function() {
-    console.log('Express server listening on %d, in %s mode', config.port, process.env.NODE_ENV);
+// Start app
+function startApp() {
+  app.listen(config.port, () => {
+    console.info('Express server listening on %d, in %s mode', config.port, process.env.NODE_ENV); // eslint-disable-line
   });
 }
 
-setImmediate(startServer);
+setImmediate(startApp);
 
 // Expose app
 export default app;

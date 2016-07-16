@@ -1,5 +1,3 @@
-'use strict';
-
 import express from 'express';
 import { index, show, create, update, destroy } from './person.controller';
 

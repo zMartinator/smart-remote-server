@@ -1,7 +1,6 @@
-'use strict';
+// PRODUCTION specific configuration
 
-// Production specific configuration
-const config = {
+export default {
   // Server IP
   ip: process.env.IP || undefined,
 
@@ -10,8 +9,6 @@ const config = {
 
   // MongoDB connection options
   mongo: {
-    uri: process.env.MONGODB_URI || 'mongodb://localhost/persons-rest-api-prod'
-  }
+    uri: process.env.MONGODB_URI || 'mongodb://localhost/persons-rest-api-prod',
+  },
 };
-
-export default config;
