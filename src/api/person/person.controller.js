@@ -73,6 +73,7 @@ export function index(req, res) {
 
 // Gets a single Person from the DB
 export function show(req, res) {
+  console.log(`GET /api/persons/${req.params.id}`);
   return Person.find({'id': req.params.id}).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))

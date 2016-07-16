@@ -29,7 +29,7 @@ routes(app)
 
 // Start server
 function startServer() {
-  server.listen(config.port, config.ip, function() {
+  server.listen(config.port, function() {
     console.log('Express server listening on %d, in %s mode', config.port, process.env.NODE_ENV);
   });
 }
