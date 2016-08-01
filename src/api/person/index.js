@@ -9,4 +9,4 @@ router.post('/', create);
 router.put('/:id', update);
 router.delete('/:id', destroy);
 
-module.exports = router;
+export default router;
