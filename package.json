@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {
+    "axios": "^0.15.2",
     "bluebird": "^3.3.3",
     "body-parser": "^1.15.2",
     "connect-mongo": "^1.2.1",

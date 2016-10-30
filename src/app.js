@@ -4,21 +4,21 @@ import config from './config/environment';
 import routes from './routes';
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
-import seed from './config/seed';
+// import seed from './config/seed';
 import app from './config/express';
 
 
 // Connect/configure MongoDB
-mongoose.Promise = bluebird;
-mongoose.connect(config.mongo.uri, config.mongo.options);
-mongoose.connection.on('error', (err) => {
-  console.error('MongoDB connection error: ' + err); // eslint-disable-line
-  process.exit(-1);
-});
+// mongoose.Promise = bluebird;
+// mongoose.connect(config.mongo.uri, config.mongo.options);
+// mongoose.connection.on('error', (err) => {
+//   console.error('MongoDB connection error: ' + err); // eslint-disable-line
+//   process.exit(-1);
+// });
 
 // Populate databases with sample data
-if (config.seedDB)
-  seed();
+// if (config.seedDB)
+//   seed();
 
 // Setup routes
 routes(app);
